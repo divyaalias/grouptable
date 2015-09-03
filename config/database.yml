@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  host: localhost
+  encoding: utf8
+  reconnect: false
+  database: group_table
+  pool: 5
+  username: postgres
+  password: postgres
