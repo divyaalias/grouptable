@@ -1,0 +1,17 @@
+.secret-table {
+  margin-left: 15%;
+  width: 70%;
+}
+.table-heading {
+	 text-align: center;
+}
+.random-gen {
+    float: right;
+    padding-bottom: 14px;
+    padding-top: 3px;
+}
+.generation {
+	position: absolute;
+  right: 129px;
+  top: 66px;
+}

@@ -1,1 +1,29 @@
-dsffsdll
+<div class="secret-table"> 
+  <h2>Secret Codes List</h2>
+  <div class="random-gen">
+  <%= form_tag generate_codes_secret_codes_path, :method => "get" do  %>
+    <%= select_tag "code_num", options_for_select([['1'], ['10'], ['20'],['50'],['100']], params[:code_num] ) , :class => "form-control"%>
+    <%= submit_tag "gen", :class => "generation btn btn-info"%>
+  <% end %>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="table-heading">Sl.No</th>
+        <th class="table-heading">Secret Code</th>
+        <th class="table-heading">Email Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @secret_codes.each do |code| %>
+      <tr class="success">
+        <td>1</td>
+        <td><%= code.secret_code %></td>
+        <td><%= code.user_id%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+

@@ -4,8 +4,14 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :secret_codes
   root 'secret_codes#index'
+
+  resources :secret_codes do
+    collection do
+      get 'generate_codes'
+    end
+  end
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
