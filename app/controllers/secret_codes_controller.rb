@@ -1,20 +1,23 @@
 class SecretCodesController < ApplicationController
 
 	def index
-		if current_user.role_id != 2
-			@secret_codes = SecretCode.where(user_id: current_user.id)
+		if current_user.role.try(:name) == 'admin'
+			@secret_codes = SecretCode.all.paginate(:page => params[:page], :per_page => 15)
 		else
-			@secret_codes = SecretCode.all
+			render 'welcome/welcome'
 		end
 	end
 
 	def generate_codes
-		code_num = params["code_num"]
-		randon_gen = code_num.to_i.times.map{SecureRandom.hex(2)}
-		randon_gen.each do |randon_gen|
-  		SecretCode.create(secret_code: randon_gen)
+		if can? :create, SecretCode 
+			params["code_num"].to_i.times.each do 
+			 SecretCode.create(secret_code: SecureRandom.hex(2))
+		  end
+			redirect_to secret_codes_path
+		else
+			flash[:error] = "You are not authorised user for accessing this page"
+			redirect_to secret_codes_path
 		end
-		redirect_to secret_codes_path
 	end
 
 end

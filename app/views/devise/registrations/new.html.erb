@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= label_tag :secret_code %><br />
-    <%= text_field_tag :secret_code, '', :id => "secret-co" %>
+    <%= text_field_tag :secret_code, '', :id => "secret-co", :readonly => true %>
     <label class="error msg"></label>
   </div>
   <a href="" class="code-generation" data-toggle="modal" data-target="#myModal">Click here to get secret code</a>
@@ -42,8 +42,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group" id="random-string">
-        <%secret = SecretCode.where(user_id: nil)%>
-          <% secret.each do |code| %>
+          <% secret_codes.each do |code| %>
             <span id="spanval"><%= code.secret_code %></span>
           <% end %>
         </div>

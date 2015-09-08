@@ -41,3 +41,4 @@ gem 'spring',        group: :development
 # Added gems
  gem 'devise'
  gem "cancan"
+ gem 'will_paginate', '~> 3.0.6'

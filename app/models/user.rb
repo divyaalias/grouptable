@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_one :secret_code
+  belongs_to :role
  
   def self.update_secret_code(secret_code,user_id)
   	SecretCode.create(secret_code: secret_code, user_id: user_id)
