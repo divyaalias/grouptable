@@ -24,10 +24,11 @@
   <div class="field">
     <%= label_tag :secret_code %><br />
     <%= text_field_tag :secret_code, '', :id => "secret-co" %>
+    <label class="error msg"></label>
   </div>
-  <a href="" data-toggle="modal" data-target="#myModal">Click here to get secret code</a>
+  <a href="" class="code-generation" data-toggle="modal" data-target="#myModal">Click here to get secret code</a>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Register" %>
   </div>
 <% end %>
 
@@ -41,7 +42,8 @@
       </div>
       <div class="modal-body">
         <div class="form-group" id="random-string">
-          <% SecretCode.all.each do |code| %>
+        <%secret = SecretCode.where(user_id: nil)%>
+          <% secret.each do |code| %>
             <span id="spanval"><%= code.secret_code %></span>
           <% end %>
         </div>
@@ -52,9 +54,24 @@
   
 <script type="text/javascript">
 $(document).ready(function () {
-  $("body").on("click","#random-string a",function(){
-    var a= $(this).children('#spanval').text();
-    $('#secret-co').val(a);
+  $("body").on("click","#spanval",function(){
+    var selectedValue=$(this).text();
+    $("#secret-co").val(selectedValue);
+    $("#myModal").modal('hide');
+  });
+   $("#new_user").validate({
+    rules:{
+      "secret_code":
+        {
+        required: true
+       }
+    },
+    messages: {
+      "secret_code":
+        {
+        required:"Please Enter value"
+        }
+    }
   });
 });
 </script>

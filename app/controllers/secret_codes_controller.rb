@@ -1,7 +1,11 @@
 class SecretCodesController < ApplicationController
 
 	def index
-		@secret_codes = SecretCode.all
+		if current_user.role_id != 2
+			@secret_codes = SecretCode.where(user_id: current_user.id)
+		else
+			@secret_codes = SecretCode.all
+		end
 	end
 
 	def generate_codes

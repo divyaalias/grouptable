@@ -1,11 +1,13 @@
 <div class="secret-table"> 
   <h2>Secret Codes List</h2>
-  <div class="random-gen">
-  <%= form_tag generate_codes_secret_codes_path, :method => "get" do  %>
-    <%= select_tag "code_num", options_for_select([['1'], ['10'], ['20'],['50'],['100']], params[:code_num] ) , :class => "form-control"%>
-    <%= submit_tag "gen", :class => "generation btn btn-info"%>
+  <% if can? :generate_codes, @secret_codes %>
+    <div class="random-gen">
+      <%= form_tag generate_codes_secret_codes_path, :method => "get" do  %>
+        <%= select_tag "code_num", options_for_select([['1'], ['10'], ['20'],['50'],['100']], params[:code_num] ) , :class => "form-control"%>
+        <%= submit_tag "gen", :class => "generation btn btn-info"%>
+      <% end %>
+    </div>
   <% end %>
-  </div>
   <table class="table">
     <thead>
       <tr>
@@ -19,7 +21,7 @@
       <tr class="success">
         <td>1</td>
         <td><%= code.secret_code %></td>
-        <td><%= code.user_id%></td>
+        <td><%= code.user.email unless code.user.nil?%></td>
       </tr>
       <% end %>
     </tbody>

@@ -39,4 +39,5 @@ gem 'spring',        group: :development
  gem 'debugger', group: [:development, :test]
 
 # Added gems
-  gem 'devise'
+ gem 'devise'
+ gem "cancan"

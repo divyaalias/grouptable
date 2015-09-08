@@ -15,3 +15,31 @@
   right: 129px;
   top: 66px;
 }
+#spanval{
+	cursor: pointer;
+}
+#spanval:hover{
+	font-style: italic;
+	color: #337AB7;
+}
+.new_user{
+	position: relative;
+}
+
+.code-generation {
+    bottom: 14%;
+    position: absolute;
+    right: 27%;
+}
+.code-generation:hover, .code-generation:focus{
+	text-decoration: none;
+	outline: none;
+}
+.actions{
+	margin-top: 5px;
+}
+
+.error {
+    color: rgb(255, 0, 0);
+    font-weight: normal;
+}
